@@ -50,7 +50,7 @@ def liste_resultats(texte):
 
 
     
-    
+
 # ## MAIN
 
 # ## Récupération du texte de chaque fichier  
@@ -59,7 +59,7 @@ ocr = lire_fichier("./data_ocr/DUTRONC_OCR/2_dutronc_noise")
 propre = lire_fichier("./data/DUTRONC_PP/0_dutronc_clean")
 
 
-## Récupération des informations de sortie,
+# # Récupération des informations de sortie,
 
 resultat1 = str(liste_resultats(ocr))
 print(resultat1)
@@ -81,7 +81,7 @@ print(resultat2)
 # chaine_2_a = chaine_2.replace(",",'')
 # # print(chaine_2_a)
 
-#DISTANCE
+# DISTANCE
 # lire_fichier_ocr = chaine_1_a
 
 # lire_fichier_pp = chaine_2_a
@@ -103,7 +103,7 @@ liste_resultat_dist2=[]
 liste_resultats =[]
 count=0
 
- 
+
 for metric_name in liste_name :
     # print(metric_name)
     liste_resultat_dist2=[]
@@ -115,7 +115,7 @@ for metric_name in liste_name :
         liste_resultat_dist2.append(distance_tab[0][1])
         # print(distance_tab[0][1])
     liste_resultat_dist.append(liste_resultat_dist2)
-        
+
 print(liste_resultat_dist)
 
 

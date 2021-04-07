@@ -11,38 +11,71 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-with open('./AUDOUX/TXT_AUDOUX_COS10.json') as json_data: 
-    lst_TXT_dist= json.load(json_data)
-    print('lst_TXT_dist', lst_TXT_dist)
+with open('./data_JSON_COURBES/AUDOUX_CORPORA/AUDOUX_distances.json') as json_data: 
+    dist =json.load(json_data)
+
+# for i in dist.items():
+    # print(i)
+
+dic_plot = {}
+for cle, dic in dist.items(): 
     
-with open('./AUDOUX/EN_AUDOUX_10cos.json') as json_data: 
-    lst_EN_dist= json.load(json_data)
-    print('lst_EN_dist', lst_EN_dist)
+    print("l'élément de clé", cle)
+    
+    for version, modele in dic.items():
+        print("  ",version )
+        
+        
+        for name_metric, liste in modele.items():
+            print("      ", name_metric)
+            plt.plot(liste, label=name_metric)
+        name_fig = "%s_%s.png"%(version, m)
+        plt.legend(loc='upper left')
+        plt.savefig("%s_%s.png"%(version))
+        plt.clf()
+        
+        
+                    # x=liste_n_max
+# y1= dist[1]
+# y2= dist[1]
+# y3= dist[2]
+# y4= dist[3]
+# y5= dist[4]
+# y6= dist[5]
+# # y7= lst_EN_dist[3]
+# plt.plot(x,y1,label="Jaccard", linestyle='dotted')
+# plt.plot(x,y2,label="braycurtis", linestyle='dotted')
+# plt.plot(x,y3,label="dice", linestyle='dotted', color ="darkgreen")
+# # plt.plot(x,y8,label="cosinus", linestyle='dotted', color ="red")
+# plt.plot(x,y4,label="Jaccard REN", color ="blue")
+# plt.plot(x,y5,label="braycurtis REN", color ="orange")
+# plt.plot(x,y6,label="dice REN", color ="darkgreen")
+# # plt.plot(x,y7,label="cosinus REN", color ="red")
 
-liste_n_max=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# plt.ylabel("Distances")
+# plt.xlabel("n_max")
+# plt.axis([0, 11, 0, 1])
+# plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
+# plt.show()
+            # print(liste)
+        
+        
+            
+            
+            
+            
+           
 
 
-x=liste_n_max
-y1= lst_TXT_dist[0]
-y2= lst_TXT_dist[1]
-y3= lst_TXT_dist[2]
-y8= lst_TXT_dist[3]
-y4= lst_EN_dist[0]
-y5= lst_EN_dist[1]
-y6= lst_EN_dist[2]
-y7= lst_EN_dist[3]
-plt.plot(x,y1,label="Jaccard", linestyle='dotted')
-plt.plot(x,y2,label="braycurtis", linestyle='dotted')
-plt.plot(x,y3,label="dice", linestyle='dotted', color ="darkgreen")
-plt.plot(x,y8,label="cosinus", linestyle='dotted', color ="red")
-plt.plot(x,y4,label="Jaccard REN", color ="blue")
-plt.plot(x,y5,label="braycurtis REN", color ="orange")
-plt.plot(x,y6,label="dice REN", color ="darkgreen")
-plt.plot(x,y7,label="cosinus REN", color ="red")
+        
+    # lst_TXT_dist= json.load(json_data)
+    # print('lst_TXT_dist', lst_TXT_dist)
+    
+# with open('./AUDOUX_CORPORA/') as json_data: 
+#     lst_EN_dist= json.load(json_data)
+#     print('lst_EN_dist', lst_EN_dist)
+
+# liste_n_max=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
-plt.ylabel("Distances")
-plt.xlabel("n_max")
-plt.axis([0, 11, 0, 1])
-plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')
-plt.show()

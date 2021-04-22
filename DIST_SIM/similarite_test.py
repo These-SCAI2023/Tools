@@ -23,9 +23,9 @@ from sklearn import metrics
 # propre = open("./data/aimard_txt_propre_venn")
 # lire_fichier_pp = propre.read()
 
-ocr = open("./data/DUTRONC_OCR/2_dutronc_noise")
+ocr = open("../data_Aimard_OCR2/corpora/AIMARD/Aimard_OCR.txt")
 lire_fichier_ocr = ocr.read()
-propre = open("./data/DUTRONC_PP/0_dutronc_clean")
+propre = open("../data_Aimard_OCR2/corpora/AIMARD/Aimard_propre.txt")
 lire_fichier_pp = propre.read()
 
 # ocr = open("./data_ocr/output_AUDOUX_EN_ocr.txt")
@@ -128,6 +128,6 @@ print(liste_resultat_dist)
 # plt.legend()
 # plt.show()
 
-w =open("./OUTPUT_dist/TXT_DUTRONC_COS10.json", "w")
+w =open("../data_AIMARD_OCR1/corpora/AIMARD_DIST.json", "w")
 w.write(json.dumps( liste_resultat_dist , indent = 2))
 w.close()

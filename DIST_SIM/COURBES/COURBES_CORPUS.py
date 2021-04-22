@@ -11,11 +11,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-with open('./data_JSON_COURBES/AUDOUX_CORPORA/AUDOUX_distances.json') as json_data: 
+with open('./AUDOUX_distances.json') as json_data: 
     dist =json.load(json_data)
 
 # for i in dist.items():
     # print(i)
+
+print(list(dist))
+# print("  ",dist['txt']["OCR--propre"])
+# print("  ", dist['txt']["OCR--OCR"])
+
+
 
 dic_plot = {}
 for cle, dic in dist.items(): 
@@ -25,11 +31,15 @@ for cle, dic in dist.items():
     for version, modele in dic.items():
         print("  ",version )
         
+    
+        
         
         for name_metric, liste in modele.items():
             print("      ", name_metric)
+            
             plt.plot(liste, label=name_metric)
-        name_fig = "%s_%s.png"%(version, m)
+        name_fig = "%s_%s.png"%(version)
+        print(" nom de la figure ", name_fig)
         plt.legend(loc='upper left')
         plt.savefig("%s_%s.png"%(version))
         plt.clf()

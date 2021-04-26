@@ -7,22 +7,17 @@ Created on Thu Jan  7 12:58:46 2021
 """
 
 
-import re
-import glob
-import spacy
-import json
-import sklearn
-import os
+import re, glob , spacy, json, sklearn, os
 from sklearn.neighbors import DistanceMetric
 from sklearn.feature_extraction.text import CountVectorizer
-# from sklearn.cluster import AgglomerativeClustering
-# from sklearn.metrics import pairwise_distances
-# from sklearn import metrics
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.metrics import pairwise_distances
+from sklearn import metrics
 # import matplotlib.pyplot as plt
 # import numpy as np
+# +
 
-
-def liste_resultats(texte, nlp=spacy.load("fr_core_news_sm")):
+def liste_resultats(texte, nlp= spacy.load("fr_core_news_sm")):
     doc = nlp(texte)
     list_resultats =[]
     for ent in doc.ents:
@@ -66,16 +61,14 @@ def get_distances(texte1, texte2, N=1, liste_name =["jaccard", "braycurtis","dic
 ## MAIN
 
 
-path_corpora = "../DATA/corpora_DAUDET/"
-# dans "corpora" un subcorpus = toutes les versions 'un texte'
+path_corpora = "../data_Audoux/corpora/"## dans "corpora" un subcorpus = toutes les versions 'un texte'
+
 
 for modele in ["sm","md", "lg"]:
-#for modele in ["lg"]:
     print("Starting with modèle %s"%modele)
     nlp = spacy.load("fr_core_news_%s"%modele)
-    
     for subcorpus in glob.glob("%s/*"%path_corpora):
-         
+        
         print("Processing %s"%subcorpus)
         print(glob.glob("%s/*.txt"%subcorpus))
         for path in glob.glob("%s/*.txt"%subcorpus): 
@@ -88,9 +81,9 @@ for modele in ["sm","md", "lg"]:
                 print(f"Already Done {path_output}")
                 
                 continue
-            
+           
             filename = re.split("/", path)[-1]
-            auteur, version, _ = re.split("_|\\.", filename)
+            auteur, version, _ = re.split("_|\.", filename)
             texte = lire_fichier(path)
             entites = liste_resultats(texte, nlp)
             #entites= ["toto", "titi"]
@@ -117,7 +110,7 @@ for subcorpus in glob.glob("%s/*"%path_corpora):
             
             filename = re.split("/", path_file)[-1]
             #print(filename)
-            elems = re.split("_|\\.", filename)
+            elems = re.split("_|\.", filename)
             auteur, version, modele = elems[0], elems[1], elems[-2]
             print("ELEMS", modele)
             if file_type =="txt":

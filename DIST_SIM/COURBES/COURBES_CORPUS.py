@@ -38,10 +38,11 @@ for cle, dic in dist.items():
             print("      ", name_metric)
             
             plt.plot(liste, label=name_metric)
-        name_fig = "%s_%s.png"%(version)
+        name_fig = "%s_%s.png"%(version, cle)
         print(" nom de la figure ", name_fig)
         plt.legend(loc='upper left')
-        plt.savefig("%s_%s.png"%(version))
+#        plt.legend
+        plt.savefig("%s_%s.png"%(version, cle))
         plt.clf()
         
         
